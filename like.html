@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>likeCounter</title>
+  </head>
+  <style>
+    button {
+      margin: 20px;
+      padding: 5px 10px;
+    }
+  </style>
+  <body>
+    <div class="conatiner">
+      <img
+        src="https://cdn.pixabay.com/photo/2022/10/11/12/38/french-bulldog-7514203__340.jpg"
+        alt=""
+      />
+    </div>
+    <h3>Like :-<span id="lik">0</span></h3>
+    <h3>DisLike :-<span id="dislik">0</span></h3>
+
+    <button>Like</button>
+    <button>Dislike</button>
+  </body>
+</html>
+
+<script>
+  let likeCounter;
+  if (localStorage.getItem("like") == null) {
+    likeCounter = 0;
+  } else {
+    likeCounter = localStorage.getItem("like");
+  }
+  document.querySelector("#lik").innerText = likeCounter;
+
+  let disLikeCounter;
+  if (localStorage.getItem("disLike") == null) {
+    disLikeCounter = 0;
+  } else {
+    disLikeCounter = localStorage.getItem("disLike");
+  }
+
+  document.querySelector("#dislik").innerText = disLikeCounter;
+
+  document.querySelector("button").addEventListener("click", likeFunction);
+  function likeFunction() {
+    likeCounter++;
+    localStorage.setItem("like", likeCounter);
+    document.querySelector("#lik").innerText = likeCounter;
+  }
+
+  document
+    .querySelector("button+button")
+    .addEventListener("click", dislikeFunction);
+
+  function dislikeFunction() {
+    disLikeCounter++;
+
+    localStorage.setItem("disLike", disLikeCounter);
+    document.querySelector("#dislik").innerText = disLikeCounter;
+  }
+</script>
